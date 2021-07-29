@@ -1,0 +1,10 @@
+# ROS2 build directories
+build/
+install/
+log/
+
+# Generated/compiled files
+*.pyc
+
+# Editor ignores
+.vscode/
