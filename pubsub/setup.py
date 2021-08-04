@@ -25,7 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             'pub = pubsub.pub:main',
-            'sub = pubsub.sub:main'
+            'sub = pubsub.sub:main',
+            'generator_sub = pubsub.generator_sub:main'
         ],
     },
 )
