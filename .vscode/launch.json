@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug deadline-sub",
+            "name": "Debug deadline_sub",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/install/pubsub/lib/pubsub/deadline-sub",
+            "program": "${workspaceFolder}/install/pubsub/lib/pubsub/deadline_sub",
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

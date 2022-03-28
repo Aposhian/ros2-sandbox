@@ -7,9 +7,11 @@
 
 using namespace std::literals::chrono_literals;  // NOLINT
 
-int main()
+int main(int argc, char * argv[])
 {
-    auto node = std::make_shared<rclcpp::Node>(nullptr);
+    rclcpp::init(argc, argv);
+
+    auto node = std::make_shared<rclcpp::Node>("deadline_sub");
 
     int32_t value;
 

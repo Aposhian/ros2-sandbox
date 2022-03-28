@@ -25,17 +25,17 @@ set(dependencies
   std_msgs
 )
 
-# C++ deadline-sub
+# C++ deadline_sub
 
-add_executable(deadline-sub
-  src/deadline-sub.cpp
+add_executable(deadline_sub
+  src/deadline_sub.cpp
 )
 
-ament_target_dependencies(deadline-sub
+ament_target_dependencies(deadline_sub
   ${dependencies}
 )
 
-install(TARGETS deadline-sub
+install(TARGETS deadline_sub
   DESTINATION lib/${PROJECT_NAME})
 
 # Launch
