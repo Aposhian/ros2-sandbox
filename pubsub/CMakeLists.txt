@@ -18,11 +18,15 @@ endif()
 # Find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(example_interfaces REQUIRED)
 
 set(dependencies
   rclcpp
+  rclcpp_action
   std_msgs
+  example_interfaces
 )
 
 # C++ deadline_sub
@@ -36,6 +40,30 @@ ament_target_dependencies(deadline_sub
 )
 
 install(TARGETS deadline_sub
+  DESTINATION lib/${PROJECT_NAME})
+
+# action server and client
+
+add_executable(simple_action_server
+  src/simple_action_server.cpp
+)
+
+ament_target_dependencies(simple_action_server
+  ${dependencies}
+)
+
+install(TARGETS simple_action_server
+  DESTINATION lib/${PROJECT_NAME})
+
+add_executable(spam_action_client
+  src/spam_action_client.cpp
+)
+
+ament_target_dependencies(spam_action_client
+  ${dependencies}
+)
+
+install(TARGETS spam_action_client
   DESTINATION lib/${PROJECT_NAME})
 
 # Launch

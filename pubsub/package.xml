@@ -10,7 +10,9 @@
   <exec_depend>rclpy</exec_depend>
 
   <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
   <depend>std_msgs</depend>
+  <depend>example_interfaces</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
