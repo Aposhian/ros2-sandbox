@@ -27,26 +27,22 @@ int main(int argc, char * argv[])
     RCLCPP_INFO(node->get_logger(), "Goal result received");
   };
 
-  auto send_goal_timer = node->create_wall_timer(
-    std::chrono::milliseconds(997),
-    [action_client, send_goal_options, node]()
-    {
+  auto thread = std::thread([node, action_client, send_goal_options](){
+    while (true) {
       RCLCPP_INFO(node->get_logger(), "Sending goal");
       action_client->async_send_goal(Action::Goal(), send_goal_options);
+      action_client->async_send_goal(Action::Goal(), send_goal_options);
       RCLCPP_INFO(node->get_logger(), "Goal sent");
-    }
-  );
-
-  auto cancel_timer = node->create_wall_timer(
-    std::chrono::milliseconds(991),
-    [action_client, node]()
-    {
+      action_client->async_cancel_all_goals([node](Action::Impl::CancelGoalService::Response::SharedPtr) {
+        RCLCPP_INFO(node->get_logger(), "Goal cancel response received");
+      });
       action_client->async_cancel_all_goals([node](Action::Impl::CancelGoalService::Response::SharedPtr) {
         RCLCPP_INFO(node->get_logger(), "Goal cancel response received");
       });
       RCLCPP_INFO(node->get_logger(), "Cancel request sent.");
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-  );
+  });
 
   rclcpp::spin(node);
 

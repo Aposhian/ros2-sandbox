@@ -11,7 +11,7 @@ def generate_launch_description():
         [
             Node(
                 package="pubsub",
-                prefix="terminator --execute gdb --args",
+                # prefix="terminator --execute gdb --args",
                 executable="simple_action_server",
                 name="simple_action_server",
             ),

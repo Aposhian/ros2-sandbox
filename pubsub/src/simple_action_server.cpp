@@ -40,7 +40,7 @@ int main(int argc, char * argv[])
       RCLCPP_INFO(node->get_logger(), "Executing goal");
       goal_timer = node->create_wall_timer(
         std::chrono::milliseconds(2000),
-        [goal_handle, node, goal_timer]()
+        [goal_handle, node, &goal_timer]()
         {
           RCLCPP_INFO(node->get_logger(), "Ticking goal");
           if (rclcpp::ok()) {
@@ -50,6 +50,7 @@ int main(int argc, char * argv[])
               RCLCPP_INFO(node->get_logger(), "Goal canceled ");
               goal_timer->cancel();
             } else {
+              std::this_thread::sleep_for(std::chrono::milliseconds(100));
               goal_handle->succeed(std::make_shared<Action::Result>());
             }
           }
